@@ -28,7 +28,7 @@ jobs:
           DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
         run: |
           export VERSION=$(cat service.yaml)
-          export CF_IMAGE=docker.io/$DOCKERHUB_USERNAME/${{ github.event.repository.name }}-test:$VERSION
+          export CF_IMAGE=docker.io/$DOCKERHUB_USERNAME/${{ github.event.repository.name }}:$VERSION
           echo "CF_IMAGE=$CF_IMAGE" >> $GITHUB_ENV
           docker build . --file Dockerfile --build-arg COLOR=$VERSION --tag $CF_IMAGE && docker push $CF_IMAGE
 
